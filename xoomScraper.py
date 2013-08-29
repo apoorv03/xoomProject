@@ -1,6 +1,9 @@
 import urllib2
 import re
 import html5lib
+import datetime
+import time
+
 from bs4 import BeautifulSoup
 # from BeautifulSoup import BeautifulSoup
 # or if you're using BeautifulSoup4:
@@ -13,4 +16,8 @@ h = soup('em', {'class': 'fx-rate'})[0]
 
 oval = origVal('span', {'id': 'yfs_l10_usdinr=x'})[0]
 
-print h.string[8:15], ", ", oval.string, ", ", float(oval.string) - float(h.string[8:15]) 
+
+ts = time.time()
+st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
+print h.string[8:15], ", ", oval.string, ", ", float(oval.string) - float(h.string[8:15]), ", ", st
